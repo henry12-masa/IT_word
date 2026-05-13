@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IT用語クイズ300問 修正版</title>
+<title>IT用語クイズ300問 改良版</title>
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-8398161859137802"
@@ -148,7 +148,7 @@ grid-template-columns:1fr;
 
 <header>
 <h1>IT用語クイズ300問</h1>
-<p>50問ランダム出題！IT・AI・Web・セキュリティ用語を学ぼう！</p>
+<p>50問ランダム出題！同じ問題が連続しない改良版！</p>
 </header>
 
 <div class="layout">
@@ -237,120 +237,70 @@ const baseQuestions = [
 type:"基本",
 question:"CPUとは何の役割をする部品？",
 answer:"計算や処理を行う",
-choices:[
-"画面を映す",
-"計算や処理を行う",
-"音を出す",
-"電源を入れる"
-]
+choices:["画面を映す","計算や処理を行う","音を出す","電源を入れる"]
 },
 
 {
 type:"基本",
 question:"OSとは？",
 answer:"コンピューターを動かす基本ソフト",
-choices:[
-"画像ソフト",
-"コンピューターを動かす基本ソフト",
-"広告",
-"部品"
-]
+choices:["画像ソフト","コンピューターを動かす基本ソフト","広告","部品"]
 },
 
 {
 type:"Web",
 question:"HTMLの主な役割は？",
 answer:"Webページの構造を作る",
-choices:[
-"デザインする",
-"Webページの構造を作る",
-"通信する",
-"保存する"
-]
+choices:["デザインする","Webページの構造を作る","通信する","保存する"]
 },
 
 {
 type:"Web",
 question:"CSSの主な役割は？",
 answer:"見た目を整える",
-choices:[
-"文章を書く",
-"見た目を整える",
-"サーバーを作る",
-"削除する"
-]
+choices:["文章を書く","見た目を整える","サーバーを作る","削除する"]
 },
 
 {
 type:"AI",
 question:"AIとは？",
 answer:"人工知能",
-choices:[
-"人工知能",
-"画像保存",
-"通信速度",
-"電源装置"
-]
+choices:["人工知能","画像保存","通信速度","電源装置"]
 },
 
 {
 type:"AI",
 question:"生成AIとは？",
 answer:"文章や画像などを作るAI",
-choices:[
-"電気を作るAI",
-"文章や画像などを作るAI",
-"掃除機",
-"検索だけ"
-]
+choices:["電気を作るAI","文章や画像などを作るAI","掃除機","検索だけ"]
 },
 
 {
 type:"セキュリティ",
 question:"フィッシング詐欺とは？",
 answer:"偽サイトなどで情報を盗む詐欺",
-choices:[
-"釣りゲーム",
-"偽サイトなどで情報を盗む詐欺",
-"画像加工",
-"通信速度"
-]
+choices:["釣りゲーム","偽サイトなどで情報を盗む詐欺","画像加工","通信速度"]
 },
 
 {
 type:"開発",
 question:"GitHubとは？",
 answer:"コードを保存・共有できるサービス",
-choices:[
-"動画サイト",
-"コードを保存・共有できるサービス",
-"ブラウザ",
-"OS"
-]
+choices:["動画サイト","コードを保存・共有できるサービス","ブラウザ","OS"]
 },
 
 {
 type:"データ",
 question:"APIとは？",
 answer:"ソフト同士をつなぐ窓口",
-choices:[
-"広告",
-"ソフト同士をつなぐ窓口",
-"画面",
-"電池"
-]
+choices:["広告","ソフト同士をつなぐ窓口","画面","電池"]
 },
 
 {
 type:"サイト運営",
 question:"SEOとは？",
 answer:"検索で見つかりやすくする対策",
-choices:[
-"画像編集",
-"検索で見つかりやすくする対策",
-"電源管理",
-"文字入力"
-]
+choices:["画像編集","検索で見つかりやすくする対策","電源管理","文字入力"]
 }
 
 ];
@@ -373,7 +323,7 @@ type:q.type
 
 }
 
-// ===== 安全なシャッフル =====
+// ===== 安全シャッフル =====
 function shuffle(array){
 
 const arr=[...array];
@@ -390,42 +340,67 @@ return arr;
 
 }
 
-// ===== バランス出題 =====
+// ===== 同じ問題が連続しない =====
 function balancedPick(count){
 
-const grouped={};
+const grouped = {};
 
-quizData.forEach(q=>{
+quizData.forEach(q => {
 
-if(!grouped[q.type]) grouped[q.type]=[];
+if(!grouped[q.type]) grouped[q.type] = [];
 
 grouped[q.type].push(q);
 
 });
 
-Object.keys(grouped).forEach(type=>{
+Object.keys(grouped).forEach(type => {
 
-grouped[type]=shuffle(grouped[type]);
+grouped[type] = shuffle(grouped[type]);
 
 });
 
-const selected=[];
+const selected = [];
 
-let types=shuffle(Object.keys(grouped));
+let lastQuestionText = "";
 
-while(selected.length<count){
+let types = shuffle(Object.keys(grouped));
+
+while(selected.length < count){
+
+let added = false;
 
 for(const type of types){
 
-if(grouped[type].length && selected.length<count){
+if(!grouped[type].length) continue;
 
-selected.push(grouped[type].pop());
+const index = grouped[type].findIndex(q => {
+
+const cleanText =
+q.question.replace(/^【.*?】/, "");
+
+return cleanText !== lastQuestionText;
+
+});
+
+if(index !== -1 && selected.length < count){
+
+const q =
+grouped[type].splice(index, 1)[0];
+
+selected.push(q);
+
+lastQuestionText =
+q.question.replace(/^【.*?】/, "");
+
+added = true;
 
 }
 
 }
 
-types=shuffle(types);
+if(!added) break;
+
+types = shuffle(types);
 
 }
 
@@ -604,13 +579,9 @@ ${rank}
 `;
 
 choicesEl.innerHTML="";
-
 resultEl.textContent="";
-
 nextBtn.style.display="none";
-
 restartBtn.style.display="block";
-
 statusEl.textContent="終了";
 
 }
