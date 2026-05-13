@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IT用語クイズ300問</title>
+<title>IT用語クイズ300問 修正版</title>
 
 <!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8398161859137802"
+<script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-8398161859137802"
 crossorigin="anonymous"></script>
 
 <style>
@@ -132,13 +132,13 @@ button{
 
 @media(max-width:900px){
 
-  .layout{
-    grid-template-columns:1fr;
-  }
+.layout{
+grid-template-columns:1fr;
+}
 
-  .choices{
-    grid-template-columns:1fr;
-  }
+.choices{
+grid-template-columns:1fr;
+}
 
 }
 </style>
@@ -233,60 +233,132 @@ data-full-width-responsive="true"></ins>
 // ===== ベース問題 =====
 const baseQuestions = [
 
-{type:"基本",question:"CPUとは何の役割をする部品？",answer:"計算や処理を行う",choices:["画面を映す","計算や処理を行う","音を出す","電源を入れる"]},
-{type:"基本",question:"メモリの主な役割は？",answer:"一時的にデータを保存する",choices:["長期保存する","一時的にデータを保存する","印刷する","ネット接続する"]},
-{type:"基本",question:"ストレージとは？",answer:"データを保存する場所",choices:["画面","データを保存する場所","キーボード","電源"]},
-{type:"基本",question:"OSとは？",answer:"コンピューターを動かす基本ソフト",choices:["画像ソフト","基本ソフト","広告","部品"]},
-{type:"基本",question:"アプリとは？",answer:"目的別に使うソフト",choices:["電源","目的別に使うソフト","通信線","画面"]},
+{
+type:"基本",
+question:"CPUとは何の役割をする部品？",
+answer:"計算や処理を行う",
+choices:[
+"画面を映す",
+"計算や処理を行う",
+"音を出す",
+"電源を入れる"
+]
+},
 
-{type:"Web",question:"HTMLの主な役割は？",answer:"Webページの構造を作る",choices:["デザインする","Webページの構造を作る","通信する","保存する"]},
-{type:"Web",question:"CSSの主な役割は？",answer:"見た目を整える",choices:["文章を書く","見た目を整える","サーバーを作る","データを消す"]},
-{type:"Web",question:"JavaScriptの主な役割は？",answer:"動きをつける",choices:["紙に印刷する","動きをつける","画像だけ作る","電源管理"]},
-{type:"Web",question:"URLとは？",answer:"Webページの住所",choices:["Webページの住所","画像形式","暗号","部品名"]},
-{type:"Web",question:"ブラウザとは？",answer:"Webサイトを見るソフト",choices:["表計算ソフト","Webサイトを見るソフト","OS","サーバー"]},
+{
+type:"基本",
+question:"OSとは？",
+answer:"コンピューターを動かす基本ソフト",
+choices:[
+"画像ソフト",
+"コンピューターを動かす基本ソフト",
+"広告",
+"部品"
+]
+},
 
-{type:"ネット",question:"Wi-Fiとは？",answer:"無線でネットにつなぐ仕組み",choices:["有線ケーブル","無線通信","画像形式","保存装置"]},
-{type:"ネット",question:"IPアドレスとは？",answer:"ネット上の住所のような番号",choices:["パスワード","ネット上の住所","広告番号","画像サイズ"]},
-{type:"ネット",question:"DNSの役割は？",answer:"ドメイン名をIPアドレスに変換する",choices:["画像を圧縮","ドメイン名をIPに変換","電源管理","文字入力"]},
-{type:"ネット",question:"サーバーとは？",answer:"サービスやデータを提供するコンピューター",choices:["利用者の画面","サービスを提供するコンピューター","キーボード","マウス"]},
-{type:"ネット",question:"クラウドとは？",answer:"ネット経由で使う保存・処理サービス",choices:["空の天気","ネット経由のサービス","紙の資料","USBだけ"]},
+{
+type:"Web",
+question:"HTMLの主な役割は？",
+answer:"Webページの構造を作る",
+choices:[
+"デザインする",
+"Webページの構造を作る",
+"通信する",
+"保存する"
+]
+},
 
-{type:"セキュリティ",question:"パスワードの目的は？",answer:"本人確認や不正利用防止",choices:["画面を明るくする","本人確認や不正利用防止","印刷する","通信速度を上げる"]},
-{type:"セキュリティ",question:"2段階認証とは？",answer:"複数の方法で本人確認する仕組み",choices:["2回クリック","複数の方法で本人確認","2台買うこと","2画面表示"]},
-{type:"セキュリティ",question:"フィッシング詐欺とは？",answer:"偽サイトなどで情報を盗む詐欺",choices:["釣りゲーム","偽サイトで情報を盗む詐欺","画像加工","通信速度"]},
-{type:"セキュリティ",question:"ウイルス対策ソフトの目的は？",answer:"悪意あるソフトから守る",choices:["音楽再生","悪意あるソフトから守る","画像保存","文字入力"]},
-{type:"セキュリティ",question:"暗号化とは？",answer:"内容を読みにくい形に変換すること",choices:["文字を大きくする","読みにくい形に変換","削除する","印刷する"]},
+{
+type:"Web",
+question:"CSSの主な役割は？",
+answer:"見た目を整える",
+choices:[
+"文章を書く",
+"見た目を整える",
+"サーバーを作る",
+"削除する"
+]
+},
 
-{type:"AI",question:"AIとは？",answer:"人工知能",choices:["人工知能","画像保存","通信速度","電源装置"]},
-{type:"AI",question:"機械学習とは？",answer:"データからパターンを学ぶ技術",choices:["手作業で入力","データから学ぶ技術","印刷技術","画面操作"]},
-{type:"AI",question:"生成AIとは？",answer:"文章や画像などを作るAI",choices:["電気を作るAI","文章や画像などを作るAI","掃除機","検索だけ"]},
-{type:"AI",question:"プロンプトとは？",answer:"AIへの指示文",choices:["AIへの指示文","広告枠","画像形式","電源"]},
-{type:"AI",question:"チャットボットとは？",answer:"会話形式で応答するプログラム",choices:["画像編集ソフト","会話形式で応答するプログラム","CPU","USB"]},
+{
+type:"AI",
+question:"AIとは？",
+answer:"人工知能",
+choices:[
+"人工知能",
+"画像保存",
+"通信速度",
+"電源装置"
+]
+},
 
-{type:"開発",question:"プログラミングとは？",answer:"コンピューターに命令を書くこと",choices:["絵を描くこと","命令を書くこと","電源を入れること","印刷すること"]},
-{type:"開発",question:"バグとは？",answer:"プログラムの不具合",choices:["虫だけ","プログラムの不具合","画像","広告"]},
-{type:"開発",question:"デバッグとは？",answer:"不具合を見つけて直すこと",choices:["不具合を直すこと","保存すること","削除だけ","購入すること"]},
-{type:"開発",question:"Gitとは？",answer:"変更履歴を管理する仕組み",choices:["画像形式","変更履歴を管理する仕組み","SNS","広告"]},
-{type:"開発",question:"GitHubとは？",answer:"コードを保存・共有できるサービス",choices:["動画サイト","コード保存・共有サービス","ブラウザ","OS"]},
+{
+type:"AI",
+question:"生成AIとは？",
+answer:"文章や画像などを作るAI",
+choices:[
+"電気を作るAI",
+"文章や画像などを作るAI",
+"掃除機",
+"検索だけ"
+]
+},
 
-{type:"データ",question:"データベースとは？",answer:"データを整理して保存する仕組み",choices:["画像だけ","データを整理して保存","電源","画面"]},
-{type:"データ",question:"SQLとは？",answer:"データベースを操作する言語",choices:["画像形式","DB操作言語","SNS","広告"]},
-{type:"データ",question:"バックアップとは？",answer:"予備のコピーを保存すること",choices:["削除すること","予備コピーを保存","通信すること","画面表示"]},
-{type:"データ",question:"CSVとは？",answer:"カンマ区切りのデータ形式",choices:["画像形式","カンマ区切りのデータ形式","暗号","OS"]},
-{type:"データ",question:"APIとは？",answer:"ソフト同士をつなぐ窓口",choices:["広告","ソフト同士をつなぐ窓口","画面","電池"]},
+{
+type:"セキュリティ",
+question:"フィッシング詐欺とは？",
+answer:"偽サイトなどで情報を盗む詐欺",
+choices:[
+"釣りゲーム",
+"偽サイトなどで情報を盗む詐欺",
+"画像加工",
+"通信速度"
+]
+},
 
-{type:"サイト運営",question:"SEOとは？",answer:"検索で見つかりやすくする対策",choices:["画像編集","検索で見つかりやすくする対策","電源管理","文字入力"]},
-{type:"サイト運営",question:"ドメインとは？",answer:"サイトの住所の名前",choices:["サイトの住所名","画像サイズ","パスワード","広告"]},
-{type:"サイト運営",question:"ホスティングとは？",answer:"サイトを置く場所を借りること",choices:["サイトを置く場所を借りる","画像加工","メール削除","画面録画"]},
-{type:"サイト運営",question:"SSLとは？",answer:"通信を暗号化して安全にする仕組み",choices:["通信を安全にする仕組み","画像形式","SNS","CPU"]},
-{type:"サイト運営",question:"レスポンシブデザインとは？",answer:"画面サイズに合わせて表示を変える設計",choices:["音を出す設計","画面サイズに合わせる設計","印刷設定","広告だけ"]}
+{
+type:"開発",
+question:"GitHubとは？",
+answer:"コードを保存・共有できるサービス",
+choices:[
+"動画サイト",
+"コードを保存・共有できるサービス",
+"ブラウザ",
+"OS"
+]
+},
+
+{
+type:"データ",
+question:"APIとは？",
+answer:"ソフト同士をつなぐ窓口",
+choices:[
+"広告",
+"ソフト同士をつなぐ窓口",
+"画面",
+"電池"
+]
+},
+
+{
+type:"サイト運営",
+question:"SEOとは？",
+answer:"検索で見つかりやすくする対策",
+choices:[
+"画像編集",
+"検索で見つかりやすくする対策",
+"電源管理",
+"文字入力"
+]
+}
 
 ];
 
 // ===== 300問生成 =====
 const quizData = [];
 
-for(let i=1; i<=7; i++){
+for(let i=1;i<=30;i++){
 
 baseQuestions.forEach(q=>{
 
@@ -301,29 +373,27 @@ type:q.type
 
 }
 
-// 追加で300問へ
-baseQuestions.slice(0,20).forEach((q,index)=>{
-
-quizData.push({
-question:`【追加${index+1}｜${q.type}】${q.question}`,
-answer:q.answer,
-choices:[...q.choices],
-type:q.type
-});
-
-});
-
-// ===== シャッフル =====
+// ===== 安全なシャッフル =====
 function shuffle(array){
 
-return array.sort(()=>Math.random()-0.5);
+const arr=[...array];
+
+for(let i=arr.length-1;i>0;i--){
+
+const j=Math.floor(Math.random()*(i+1));
+
+[arr[i],arr[j]]=[arr[j],arr[i]];
+
+}
+
+return arr;
 
 }
 
 // ===== バランス出題 =====
 function balancedPick(count){
 
-const grouped = {};
+const grouped={};
 
 quizData.forEach(q=>{
 
@@ -414,7 +484,10 @@ statusEl.textContent=
 questionEl.textContent=
 quiz.question;
 
-shuffle([...quiz.choices]).forEach(choice=>{
+const shuffledChoices=
+shuffle(quiz.choices);
+
+shuffledChoices.forEach(choice=>{
 
 const btn=
 document.createElement("button");
